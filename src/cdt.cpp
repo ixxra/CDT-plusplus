@@ -47,11 +47,12 @@ to the Metropolis algorithm. Specify the number of passes to control
 how much evolution is desired. Each pass attempts a number of ergodic
 moves equal to the number of simplices in the simulation.
 
-Usage:./cdt (--spherical | --toroidal) -n SIMPLICES -t TIMESLICES [-d DIM] -k K --alpha ALPHA --lambda LAMBDA [-p PASSES]
+Usage:
+  ./cdt (--spherical | --toroidal) -n SIMPLICES -t TIMESLICES [-d DIM] -k K -a ALPHA -l LAMBDA [-p PASSES]
 
 Examples:
-./cdt --spherical -n 64000 -t 256 --alpha 1.1 -k 2.2 --lambda 3.3 --passes 1000
-./cdt --s -n64000 -t256 -a1.1 -k2.2 -l3.3 -p1000
+  ./cdt --spherical -n 64000 -t 256 --alpha 1.1 -k 2.2 --lambda 3.3 --passes 1000
+  ./cdt --s -n64000 -t256 -a1.1 -k2.2 -l3.3 -p1000
 
 Options:
   -h --help             Show this message
@@ -59,10 +60,10 @@ Options:
   -n SIMPLICES          Approximate number of simplices
   -t TIMESLICES         Number of timeslices
   -d DIM                Dimensionality [default: 3]
-  -a --alpha ALPHA      Negative squared geodesic length of 1-d timelike edges
+  -a ALPHA      Negative squared geodesic length of 1-d timelike edges
   -k K                  K = 1/(8*pi*G_newton)
-  -l --lambda LAMBDA    K * Cosmological constant
-  -p --passes PASSES    Number of passes [default: 10000]
+  -l LAMBDA    K * Cosmological constant
+  -p PASSES    Number of passes [default: 10000]
 )"
 };
 
@@ -84,18 +85,20 @@ int main(int argc, char* const argv[]) {
                      "CDT 1.0");    // Version
 
   // Debugging
-  // for (auto const& arg : args) {
-  //   std::cout << arg.first << " " << arg.second << std::endl;
-  // }
+   for (auto const& arg : args) {
+     std::cout << "ARGS:" << arg.first << " " << arg.second << std::endl;
+   }
+
 
   // Parse docopt::values in args map
   auto simplices = std::stoul(args["-n"].asString());
   auto timeslices = std::stoul(args["-t"].asString());
   auto dimensions = std::stoul(args["-d"].asString());
-  auto alpha = std::stold(args["--alpha"].asString());
+  auto alpha = std::stold(args["-a"].asString());
   auto k = std::stold(args["-k"].asString());
-  auto lambda = std::stold(args["--lambda"].asString());
-  auto passes = std::stoul(args["--passes"].asString());
+  auto lambda = std::stold(args["-l"].asString());
+  auto passes = std::stoul(args["-p"].asString());
+
 
   // Topology of simulation
   topology_type topology;

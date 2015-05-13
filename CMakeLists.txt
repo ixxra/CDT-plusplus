@@ -23,7 +23,7 @@ add_definitions(-std=c++1y)
 
 # Turn on/off Google Mock Tests
 ###############################################################################
-set(GMOCK_TESTS TRUE)
+set(GMOCK_TESTS FALSE)
 
 # Main program executable
 ###############################################################################
