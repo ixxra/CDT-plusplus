@@ -53,16 +53,15 @@ pipeline for visualization.
 Note that the standard output of CDT++ includes cell neighbors, and should
 be truncated to just include points.
 
-Usage:./cdt-gv --file FILE
+Usage:./cdt-gv -f FILE
 
 Example:
-./cdt --file points.dat
-./cdt --f points.dat
+./cdt -f points.dat
 
 Options:
   -h --help             Show this message
   --version             Show program version
-  -f --file FILENAME    The file to load into GeomView
+  -f FILENAME    The file to load into GeomView
 )"
 };
 
@@ -85,7 +84,7 @@ int main(int argc, char* const argv[]) {
   // }
 
   // Parse docopt::values in args map
-  auto file = args["--file"].asString();
+  auto file = args["-f"].asString();
 
   // Test
   std::cout << "File to be loaded is " << file << std::endl;
